@@ -26,3 +26,7 @@
   font-size: 0.9em;
   margin-bottom: 15px;
 }
+
+.icon-small {
+  width: 10%; /* Set the width to 10% */
+}
