@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>smolNews</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center">smolNews</h1>
+    <div class="form-group">
+      <select id="topicSelect" class="form-control">
+        <option value="">All Topics</option>
+        <option value="business">Business</option>
+        <option value="entertainment">Entertainment</option>
+        <option value="health">Health</option>
+        <option value="science">Science</option>
+        <option value="sports">Sports</option>
+        <option value="technology">Technology</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <select id="apiSelect" class="form-control">
+        <option value="currents">Currents API</option>
+        <option value="nyt">NYT API</option>
+      </select>
+    </div>
+    <div class="form-group" id="sourceSelectContainer">
+      <select id="sourceSelect" class="form-control">
+        <option value="">All Sources</option>
+        <option value="cnn.com">CNN</option>
+        <option value="bbc.com">BBC News</option>
+        <option value="theverge.com">The Verge</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <select id="languageSelect" class="form-control">
+        <option value="">All Languages</option>
+        <option value="en">English</option>
+        <option value="es">Spanish</option>
+        <option value="fr">French</option>
+        <option value="de">German</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <input type="text" id="searchInput" class="form-control" placeholder="Search for articles...">
+    </div>
+    <button id="searchButton" class="btn btn-primary btn-block">Search</button>
+    <div id="articles" class="mt-4"></div>
+  </div>
+  <div class="modal fade" id="articleModal" tabindex="-1" aria-labelledby="articleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="articleModalLabel">Article Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="articleDetails">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <a id="fullArticleLink" href="#" target="_blank" class="btn btn-primary">Read Full Article</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

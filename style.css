@@ -1,0 +1,28 @@
+.card-horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.card-horizontal img {
+  width: 337px;
+  height: 200px;
+  margin-right: 15px;
+  object-fit: cover;
+}
+
+.modal-body img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.modal-dialog {
+  max-width: 800px;
+}
+
+.article-metadata {
+  color: #666;
+  font-size: 0.9em;
+  margin-bottom: 15px;
+}
