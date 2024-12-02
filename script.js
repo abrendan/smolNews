@@ -111,7 +111,21 @@ function fetchFromNYTAPI(query, topic) {
 
 function displayArticles(articles, apiType) {
   const articlesDiv = document.getElementById('articles');
-  articlesDiv.innerHTML = '';
+  articlesDiv.innerHTML = ''; // Clear previous articles
+
+  const messageDiv = document.createElement('div'); // Create a message div
+
+  if (articles.length === 0) {
+    // Display an error message if there are no articles
+    messageDiv.innerHTML = '<p class="text-danger">No articles found. Please try a different search.</p>';
+    messageDiv.className = 'message';
+    document.body.appendChild(messageDiv);
+    setTimeout(() => {
+      document.body.removeChild(messageDiv);
+    }, 3000);
+    return;
+  }
+
   articles.forEach(article => {
     const thumbnailUrl = article.image || 'default-thumbnail.jpg';
 
@@ -135,6 +149,16 @@ function displayArticles(articles, apiType) {
     `;
     articlesDiv.appendChild(articleElement);
   });
+
+  // Display success message
+  messageDiv.innerHTML = '<p class="text-success">Articles loaded successfully!</p>';
+  messageDiv.className = 'message';
+  document.body.appendChild(messageDiv);
+
+  // Automatically remove the message after a few seconds
+  setTimeout(() => {
+    document.body.removeChild(messageDiv);
+  }, 3000);
 }
 
 function viewArticleDetails(article) {
