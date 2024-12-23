@@ -12,6 +12,49 @@ document.getElementById('searchButton').addEventListener('click', function() {
   fetchNewsArticles();
 });
 
+function fetchTopics() {
+  const apiKey = 'b2uZWPY42BaUWN4Luaj_fbjJR6y7idTudew9UcpSbzr2D2VO';
+  const url = `https://api.currentsapi.services/v1/available/categories?apiKey=${apiKey}`;
+
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.statusText} (${response.status})`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      const topicSelect = document.getElementById('topicSelect');
+      topicSelect.innerHTML = '<option value="">All Topics</option>'; // Reset topics dropdown
+
+      // Add static topics
+      const staticTopics = [
+        { value: 'business', text: 'Business' },
+        { value: 'entertainment', text: 'Entertainment' },
+        { value: 'science', text: 'Science' },
+        { value: 'sports', text: 'Sports' },
+        { value: 'technology', text: 'Technology' },
+      ];
+
+      // Add static options first
+      staticTopics.forEach(topic => {
+        const option = document.createElement('option');
+        option.value = topic.value;
+        option.textContent = topic.text;
+        topicSelect.appendChild(option);
+      });
+
+      // Loop through the fetched categories from Currents API and add to the dropdown
+      data.categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category; // Assuming the category is used as an option value
+        option.textContent = category; // Display the category name
+        topicSelect.appendChild(option);
+      });
+    })
+    .catch(error => console.error('Error fetching topics:', error));
+}
+
 function configureDropdowns() {
   const apiSelection = document.getElementById('apiSelect').value;
   const sourceSelectContainer = document.getElementById('sourceSelectContainer');
@@ -25,6 +68,7 @@ function configureDropdowns() {
 
     fetchLanguages(); // Fetch and populate languages
     fetchCountries(); // Fetch and populate countries
+    fetchTopics();    // Fetch and populate topics
   } else if (apiSelection === 'nyt') {
     sourceSelectContainer.style.display = 'none';
     languageSelectContainer.style.display = 'none';
