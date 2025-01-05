@@ -1,3 +1,6 @@
+const apiKeyCurrents = 'b2uZWPY42BaUWN4Luaj_fbjJR6y7idTudew9UcpSbzr2D2VO';
+const apiKeyNYT = 'NQdorI46QZM3Kythn8ymAWID8ojT7ntY';
+
 document.addEventListener('DOMContentLoaded', function() {
   configureDropdowns();
   fetchNewsArticles();
@@ -13,8 +16,7 @@ document.getElementById('searchButton').addEventListener('click', function() {
 });
 
 function fetchTopics() {
-  const apiKey = 'b2uZWPY42BaUWN4Luaj_fbjJR6y7idTudew9UcpSbzr2D2VO';
-  const url = `https://api.currentsapi.services/v1/available/categories?apiKey=${apiKey}`;
+  const url = `https://api.currentsapi.services/v1/available/categories?apiKey=${apiKeyCurrents}`;
 
   fetch(url)
     .then(response => {
@@ -78,8 +80,7 @@ function configureDropdowns() {
 
 // Fetch available languages from the Currents API
 function fetchLanguages() {
-  const apiKey = 'b2uZWPY42BaUWN4Luaj_fbjJR6y7idTudew9UcpSbzr2D2VO';
-  const url = `https://api.currentsapi.services/v1/available/languages?apiKey=${apiKey}`;
+  const url = `https://api.currentsapi.services/v1/available/languages?apiKey=${apiKeyCurrents}`;
 
   fetch(url)
     .then(response => {
@@ -105,8 +106,7 @@ function fetchLanguages() {
 
 // Fetch available countries from the Currents API
 function fetchCountries() {
-  const apiKey = 'b2uZWPY42BaUWN4Luaj_fbjJR6y7idTudew9UcpSbzr2D2VO';
-  const url = `https://api.currentsapi.services/v1/available/regions?apiKey=${apiKey}`; // New API link for regions
+  const url = `https://api.currentsapi.services/v1/available/regions?apiKey=${apiKeyCurrents}`; // New API link for regions
 
   fetch(url)
     .then(response => {
@@ -147,8 +147,7 @@ function fetchNewsArticles() {
 
 // Fetch news articles from the Currents API
 function fetchFromCurrentsAPI(query, source, topic, language, region) {
-  const apiKey = 'b2uZWPY42BaUWN4Luaj_fbjJR6y7idTudew9UcpSbzr2D2VO';
-  let url = `https://api.currentsapi.services/v1/search?apiKey=${apiKey}`;
+  let url = `https://api.currentsapi.services/v1/search?apiKey=${apiKeyCurrents}`;
 
   if (query) {
     url += `&keywords=${encodeURIComponent(query)}`;
@@ -185,8 +184,7 @@ function fetchFromCurrentsAPI(query, source, topic, language, region) {
 
 // Fetch news articles from the New York Times API
 function fetchFromNYTAPI(query, topic) {
-  const apiKey = 'NQdorI46QZM3Kythn8ymAWID8ojT7ntY';
-  let url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${apiKey}`;
+  let url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${apiKeyNYT}`;
 
   if (query) {
     url += `&q=${encodeURIComponent(query)}`;
