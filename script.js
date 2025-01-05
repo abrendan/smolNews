@@ -15,6 +15,17 @@ document.getElementById('searchButton').addEventListener('click', function() {
   fetchNewsArticles();
 });
 
+document.getElementById('resetButton').addEventListener('click', function() {
+  document.getElementById('searchInput').value = '';
+  document.getElementById('topicSelect').value = '';
+  document.getElementById('apiSelect').value = 'currents';
+  document.getElementById('sourceSelect').value = '';
+  document.getElementById('languageSelect').value = '';
+  document.getElementById('countrySelect').value = '';
+  configureDropdowns();
+  fetchNewsArticles();
+});
+
 function fetchTopics() {
   const url = `https://api.currentsapi.services/v1/available/categories?apiKey=${apiKeyCurrents}`;
 
