@@ -145,6 +145,7 @@ function fetchNewsArticles() {
   }
 }
 
+// Fetch news articles from the Currents API
 function fetchFromCurrentsAPI(query, source, topic, language, region) {
   const apiKey = 'b2uZWPY42BaUWN4Luaj_fbjJR6y7idTudew9UcpSbzr2D2VO';
   let url = `https://api.currentsapi.services/v1/search?apiKey=${apiKey}`;
@@ -182,6 +183,7 @@ function fetchFromCurrentsAPI(query, source, topic, language, region) {
     .catch(error => console.error('Error fetching news:', error));
 }
 
+// Fetch news articles from the New York Times API
 function fetchFromNYTAPI(query, topic) {
   const apiKey = 'NQdorI46QZM3Kythn8ymAWID8ojT7ntY';
   let url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${apiKey}`;
@@ -217,7 +219,7 @@ function fetchFromNYTAPI(query, topic) {
     .catch(error => console.error('Error fetching news:', error));
 }
 
-function displayArticles(articles, apiType) {
+function displayArticles(articles, apiType) { // Display articles
   const articlesDiv = document.getElementById('articles');
   articlesDiv.innerHTML = ''; // Clear previous articles
 
@@ -228,13 +230,13 @@ function displayArticles(articles, apiType) {
     messageDiv.innerHTML = '<p class="text-danger">No articles found. Please try a different search.</p>';
     messageDiv.className = 'message';
     document.body.appendChild(messageDiv);
-    setTimeout(() => {
+    setTimeout(() => { // Remove the message after 3 seconds
       document.body.removeChild(messageDiv);
     }, 3000);
     return;
   }
 
-  articles.forEach(article => {
+  articles.forEach(article => { // Loop through the articles
     const thumbnailUrl = article.image || 'default-thumbnail.jpg';
 
     const articleElement = document.createElement('div');
@@ -269,6 +271,7 @@ function displayArticles(articles, apiType) {
   }, 3000);
 }
 
+// Function to view article details
 function viewArticleDetails(article) {
   const articleDetailsModal = document.getElementById('articleDetails');
   const fullArticleLink = document.getElementById('fullArticleLink');
