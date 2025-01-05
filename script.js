@@ -4,6 +4,11 @@ const apiKeyNYT = 'NQdorI46QZM3Kythn8ymAWID8ojT7ntY';
 document.addEventListener('DOMContentLoaded', function() {
   configureDropdowns();
   fetchNewsArticles();
+  
+  document.getElementById('toggleFilters').addEventListener('click', function() {
+    const filterMenu = document.getElementById('filterMenu');
+    $(filterMenu).collapse('toggle');
+  });
 });
 
 document.getElementById('apiSelect').addEventListener('change', function() {
@@ -39,23 +44,6 @@ function fetchTopics() {
     .then(data => {
       const topicSelect = document.getElementById('topicSelect');
       topicSelect.innerHTML = '<option value="">All Topics</option>'; // Reset topics dropdown
-
-      // Add static topics
-      const staticTopics = [
-        { value: 'business', text: 'Business' },
-        { value: 'entertainment', text: 'Entertainment' },
-        { value: 'science', text: 'Science' },
-        { value: 'sports', text: 'Sports' },
-        { value: 'technology', text: 'Technology' },
-      ];
-
-      // Add static options first
-      staticTopics.forEach(topic => {
-        const option = document.createElement('option');
-        option.value = topic.value;
-        option.textContent = topic.text;
-        topicSelect.appendChild(option);
-      });
 
       // Loop through the fetched categories from Currents API and add to the dropdown
       data.categories.forEach(category => {
